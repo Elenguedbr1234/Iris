@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#17251f"><title>Iris · Um rolé sem pressa</title>
+<style>
+:root{--ink:#20211d;--paper:#f5f0e5;--lime:#d6ff65;--coral:#ff8068;--green:#284b3b;--muted:#77796e;--line:#20211d24}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;padding:22px 14px 38px;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+main{max-width:600px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 5px 14px;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.top span:last-child{color:var(--muted)}
+.card{overflow:hidden;border:2px solid var(--ink);border-radius:7px;background:var(--paper);box-shadow:7px 7px 0 var(--ink)}
+.hero{position:relative;overflow:hidden;padding:29px 25px 24px;background:var(--lime);border-bottom:2px solid var(--ink)}
+.hero:before{content:"";position:absolute;width:180px;height:180px;right:-62px;top:-72px;border:2px solid #20211d2b;border-radius:50%;box-shadow:0 0 0 17px #20211d0b,0 0 0 35px #20211d0b}
+.hero:after{content:"✳";position:absolute;right:22px;top:35px;font-size:44px;transform:rotate(13deg)}
+.eyebrow{position:relative;z-index:1;display:inline-block;margin:0 0 24px;padding:7px 10px;border:1.5px solid var(--ink);border-radius:99px;background:var(--paper);font-size:10px;font-weight:900;letter-spacing:1.1px;text-transform:uppercase}
+h1{position:relative;z-index:1;margin:0 0 18px;font-size:clamp(48px,12vw,76px);line-height:.85;letter-spacing:-5px;font-weight:950;text-transform:uppercase}
+h1 span{display:inline-block;margin-top:8px;color:var(--coral);font-family:Georgia,serif;font-style:italic;font-weight:700;letter-spacing:-4px;text-transform:none;transform:rotate(-2deg)}
+.intro{position:relative;z-index:1;max-width:390px;margin:22px 0 0;font-size:15px;line-height:1.65;font-weight:600}
+.details{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:23px}
+.detail{padding:13px;border:1.5px solid var(--ink);border-radius:5px;background:var(--paper);box-shadow:3px 3px 0 var(--ink)}
+.detail small{display:block;font-size:9px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}
+.detail strong{display:block;margin-top:7px;font-size:15px;line-height:1.35}
+.detail em{display:block;margin-top:4px;color:var(--muted);font-size:11px;font-style:normal}
+.body{padding:25px}
+.note{margin:0 0 25px;font-size:15px;line-height:1.8}
+.note strong{padding:1px 4px;background:var(--lime)}
+.route{margin:0 0 26px}
+.stop{display:grid;grid-template-columns:43px 1fr;gap:12px;position:relative;padding-bottom:19px}
+.stop:not(:last-child):before{content:"";position:absolute;left:20px;top:41px;bottom:0;border-left:1.5px dashed var(--ink)}
+.num{display:flex;align-items:center;justify-content:center;width:41px;height:41px;border:1.5px solid var(--ink);border-radius:50%;background:var(--coral);font-size:13px;font-weight:900;transform:rotate(-7deg)}
+.stop:nth-child(2) .num{background:var(--lime);transform:rotate(5deg)}
+.stop:nth-child(3) .num{background:#d8d0ff;transform:rotate(-3deg)}
+.stop h3{margin:2px 0 5px;font-size:16px;letter-spacing:-.4px}
+.stop p{margin:0;color:#62645b;font-size:12px;line-height:1.7}
+.section-title{margin:0 0 8px;font-size:30px;line-height:1;letter-spacing:-1.5px;text-transform:uppercase}
+.sub{margin:0 0 19px;color:#62645b;font-size:13px;line-height:1.65}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+label{display:block;margin-bottom:8px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+input{width:100%;min-width:0;padding:13px 10px;min-height:48px;border:1.5px solid var(--ink);border-radius:5px;background:#fffdf6;color:var(--ink);font:inherit;font-size:14px;color-scheme:light}
+button,a.action{display:block;width:100%;min-height:51px;padding:15px 12px;border:1.5px solid var(--ink);border-radius:5px;text-align:center;text-decoration:none;font:inherit;font-size:14px;font-weight:900;cursor:pointer}
+.primary{margin-top:15px;background:var(--green);color:white;box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.primary:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.hint{margin:12px 0 0;color:#77796e;font-size:11px;line-height:1.65}
+.error{color:#a33323;font-size:12px}
+.response{margin-top:25px;padding-top:22px;border-top:1.5px dashed var(--ink)}
+.response h3{margin:0 0 13px;font-size:21px;letter-spacing:-.5px}
+blockquote{margin:0 0 14px;padding:15px;border-left:4px solid var(--coral);background:#fffdf6;font-size:14px;line-height:1.7;overflow-wrap:anywhere}
+.action{background:var(--lime);color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.copy{margin-top:10px;background:transparent;color:var(--ink)}
+.signature{display:flex;justify-content:space-between;gap:10px;padding:15px 25px;border-top:2px solid var(--ink);font-size:9px;font-weight:900;letter-spacing:1.3px}
+.footer{margin:18px 8px 0;text-align:center;color:#62645b;font-size:11px;line-height:1.8}
+.footer strong{display:inline-block;padding:3px 7px;background:var(--coral);color:var(--ink);transform:rotate(-1deg)}
+:focus-visible{outline:3px solid var(--coral);outline-offset:4px}
+[hidden]{display:none!important}
+@media(max-width:380px){.hero,.body{padding-left:19px;padding-right:19px}.fields{grid-template-columns:1fr}.top{font-size:9px;letter-spacing:.8px}h1{letter-spacing:-3.5px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style></head><body><main>
+<div class="top"><span><i class="spark">✳</i> Um convite especial</span><span>SÁBADO · 31 OUT</span></div>
+<article class="card"><header class="hero"><p class="eyebrow">IRIS, ISSO AQUI É PRA VOCÊ ✳</p><h1>BORA DAR<br><span>um rolé?</span></h1><p class="intro">Um parque, boas conversas, um açaí pra acompanhar… e a companhia certa. Que tal reservar um pedacinho do sábado pra gente?</p>
+<div class="details"><div class="detail"><small>Quando</small><strong>Sábado, 31/10</strong><em>A partir das 16h</em></div><div class="detail"><small>Onde</small><strong>Parque de Madureira</strong><em>Rio de Janeiro</em></div></div></header>
+<section class="body"><p class="note">A proposta é simples: <strong>andar por aí, trocar ideia e tomar um açaí</strong> sem ficar olhando pro relógio. O resto a gente deixa acontecer naturalmente. 😉</p>
+<div class="route"><div class="stop"><span class="num">01</span><div><h3>Dar uma volta pelo parque</h3><p>Escolher um caminho, curtir o fim de tarde e conversar melhor.</p></div></div><div class="stop"><span class="num">02</span><div><h3>Pausa pro açaí</h3><p>Porque todo rolé fica melhor com alguma coisa gostosa.</p></div></div><div class="stop"><span class="num">03</span><div><h3>Deixar a tarde surpreender</h3><p>Sem roteiro engessado. Se der vontade de esticar o passeio, a gente vê na hora.</p></div></div></div>
+<form id="inviteForm"><h2 class="section-title">Topa esse rolé?</h2><p class="sub">Me conta se esse horário funciona pra você. A gente combina os detalhes direitinho depois.</p><div class="fields"><div><label for="day">Dia</label><input type="date" id="day" value="2026-10-31" required></div><div><label for="time">Horário</label><input type="time" id="time" value="16:00" required></div></div><p id="error" class="error" role="alert" hidden></p><button class="primary" type="submit">Bora? 💚</button><p class="hint">É só uma proposta de encontro — a gente confirma juntos antes.</p></form>
+<section class="response" id="response" hidden aria-live="polite"><h3>Agora é só mandar pra mim ✨</h3><blockquote id="message"></blockquote><a class="action" id="whatsapp" target="_blank" rel="noopener noreferrer">Responder pelo WhatsApp ↗</a><button class="copy" id="copy" type="button">Copiar mensagem</button><p id="status" class="hint" role="status"></p></section></section><footer class="signature"><span>PLANO: NÓS DOIS</span><span>IRIS, VEM? ✳</span></footer></article>
+<p class="footer">Sem pressão, sem pressa.<br><strong>Só a ideia de passar um tempo bom com você.</strong></p></main>
+<script>
+const form=document.getElementById('inviteForm'),day=document.getElementById('day'),time=document.getElementById('time'),response=document.getElementById('response'),message=document.getElementById('message'),whatsapp=document.getElementById('whatsapp'),status=document.getElementById('status'),error=document.getElementById('error');
+function rioToday(){const p=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const g=t=>p.find(x=>x.type===t).value;return `${g('year')}-${g('month')}-${g('day')}`;}day.min=rioToday();
+function buildReply(date,clock){const[y,m,d]=date.split('-');const[h,min]=clock.split(':');const hora=min==='00'?`${Number(h)}h`:`${Number(h)}h${min}`;return `Oi! 💚 Topo o rolé no Parque de Madureira! Pra mim fica bom dia ${d}/${m}/${y}, às ${hora}. Vamos combinar os detalhes?`;}
+form.addEventListener('submit',e=>{e.preventDefault();day.min=rioToday();if(!form.reportValidity())return;if(day.value<day.min){error.textContent='Escolhe uma data de hoje em diante.';error.hidden=false;return;}error.hidden=true;const text=buildReply(day.value,time.value);message.textContent=text;whatsapp.href='https://wa.me/5521975271796?text='+encodeURIComponent(text);response.hidden=false;status.textContent='';response.scrollIntoView({behavior:'smooth',block:'nearest'});});
+for(const f of [day,time])f.addEventListener('input',()=>{response.hidden=true;error.hidden=true;});
+document.getElementById('copy').addEventListener('click',async()=>{try{if(!navigator.clipboard)throw new Error();await navigator.clipboard.writeText(message.textContent);status.textContent='Mensagem copiada!';}catch{const r=document.createRange();r.selectNodeContents(message);const s=getSelection();s.removeAllRanges();s.addRange(r);status.textContent='Mensagem selecionada: copie e cole na conversa.';}});
+</script></body></html>
